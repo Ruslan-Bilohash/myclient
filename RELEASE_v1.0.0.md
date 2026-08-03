@@ -15,6 +15,9 @@ First public release of **My Clients** — PHP client management, services catal
 - Admin: `demo` / `demo`
 - Client: `anna.berg@demo.myclient` / `demo`
 
+## Support
+- Donate: https://bilohash.com/donate.php
+
 ## Install
 See [README.md](README.md). Upload `cms/`, make `cms/data/` writable, configure Admin → Settings.
 

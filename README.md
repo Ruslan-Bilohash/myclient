@@ -8,6 +8,7 @@
 | **Live demo** | https://bilohash.com/myclient/cms/portal.php |
 | **Version** | **1.0.0** |
 | **Author** | [BILOHASH](https://bilohash.com/) · [Ruslan Bilohash](https://github.com/Ruslan-Bilohash) |
+| **Donate / Support** | https://bilohash.com/donate.php |
 | **License** | See repository (demo portfolio product) |
 
 ### Read this in other languages
@@ -162,6 +163,7 @@ myclient/
 
 ## Related
 
+- **Donate / Support:** https://bilohash.com/donate.php  
 - Ecosystem join: https://bilohash.com/ecosystem/join.php  
 - Contact: https://bilohash.com/contact.php  
 - News: https://bilohash.com/news.php  

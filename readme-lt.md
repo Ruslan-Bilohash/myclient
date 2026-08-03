@@ -8,6 +8,7 @@
 | **Demo** | https://bilohash.com/myclient/cms/portal.php |
 | **Versija** | **1.0.0** |
 | **Autorius** | [BILOHASH](https://bilohash.com/) |
+| **Parama / donatas** | https://bilohash.com/donate.php |
 
 ### Kitos kalbos
 - [English (pagrindinis README)](README.md)
@@ -101,6 +102,12 @@ myclient/
 - [CHANGELOG.md](CHANGELOG.md)
 - https://bilohash.com/myclient/changelog.php
 - https://github.com/Ruslan-Bilohash/myclient/releases
+
+---
+
+## Parama
+
+Paremti autorių: https://bilohash.com/donate.php
 
 ---
 

@@ -8,6 +8,7 @@
 | **Демо** | https://bilohash.com/myclient/cms/portal.php |
 | **Версія** | **1.0.0** |
 | **Автор** | [BILOHASH](https://bilohash.com/) |
+| **Донат / підтримка** | https://bilohash.com/donate.php |
 
 ### Інші мови
 - [English (основний README)](README.md)
@@ -101,6 +102,12 @@ myclient/
 - [CHANGELOG.md](CHANGELOG.md)
 - https://bilohash.com/myclient/changelog.php?lang=uk
 - https://github.com/Ruslan-Bilohash/myclient/releases
+
+---
+
+## Донат
+
+Підтримати автора: https://bilohash.com/donate.php
 
 ---
 

@@ -79,6 +79,7 @@ First public open-source release on GitHub: [Ruslan-Bilohash/myclient](https://g
 | Demo portal | https://bilohash.com/myclient/cms/portal.php |
 | Install | https://bilohash.com/myclient/cms/install.php |
 | Changelog page | https://bilohash.com/myclient/changelog.php |
+| Donate / Support | https://bilohash.com/donate.php |
 | BILOHASH | https://bilohash.com/ |
 
 [1.0.0]: https://github.com/Ruslan-Bilohash/myclient/releases/tag/v1.0.0
