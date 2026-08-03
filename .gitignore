@@ -1,0 +1,27 @@
+# OS / IDE
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+*.tmp
+
+# Local secrets (never commit real keys)
+cms/data/config.local.php
+**/config.local.php
+.env
+.env.*
+
+# Logs / cache
+*.log
+cms/data/cache/
+cms/data/*.bak*
+
+# Release tooling leftovers
+_release_*.json
+_asset_*.json
+_release_payload.json
+*.zip
+
+# Optional local temp
+cms-VERSION-tmp.txt

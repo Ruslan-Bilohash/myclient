@@ -1,0 +1,2 @@
+# Deny web access to data stores and local secrets
+Require all denied

@@ -1,0 +1,33 @@
+# My Clients — force UTF-8 so browsers don't misread Cyrillic in static files
+# Without charset, text/plain is often decoded as ISO-8859-1 → mojibake (РњРѕС— instead of Мої)
+AddDefaultCharset UTF-8
+
+<IfModule mod_mime.c>
+  AddType 'text/plain; charset=utf-8' .txt
+  AddType 'text/markdown; charset=utf-8' .md
+  AddType 'application/json; charset=utf-8' .json
+  AddType 'text/css; charset=utf-8' .css
+  AddType 'application/javascript; charset=utf-8' .js
+  AddType 'text/xml; charset=utf-8' .xml
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.txt$">
+    Header set Content-Type "text/plain; charset=utf-8"
+  </FilesMatch>
+  <FilesMatch "\.md$">
+    Header set Content-Type "text/markdown; charset=utf-8"
+  </FilesMatch>
+  <FilesMatch "\.json$">
+    Header set Content-Type "application/json; charset=utf-8"
+  </FilesMatch>
+  <FilesMatch "\.css$">
+    Header set Content-Type "text/css; charset=utf-8"
+  </FilesMatch>
+  <FilesMatch "\.js$">
+    Header set Content-Type "application/javascript; charset=utf-8"
+  </FilesMatch>
+  <FilesMatch "\.xml$">
+    Header set Content-Type "text/xml; charset=utf-8"
+  </FilesMatch>
+</IfModule>

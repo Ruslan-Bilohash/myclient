@@ -1,0 +1,269 @@
+{
+    "items": [
+        {
+            "id": "svc_extra_sites_5",
+            "name": {
+                "uk": "+5 додаткових сайтів",
+                "no": "+5 ekstra nettsteder",
+                "en": "+5 additional websites"
+            },
+            "desc": {
+                "uk": "Розширте ліміт сайтів на 5",
+                "no": "Utvid nettstedgrensen med 5",
+                "en": "Expand your site limit by 5"
+            },
+            "icon": "🌐",
+            "price_m1": 69,
+            "price_m3": 0,
+            "price_m12": 99,
+            "active": true,
+            "sort": 1,
+            "created_at": "2026-07-25 00:00:00",
+            "updated_at": "2026-07-26 02:20:02",
+            "billing_mode": "year"
+        },
+        {
+            "id": "svc_extra_storage_10gb",
+            "name": {
+                "uk": "+10 ГБ сховища",
+                "no": "+10 GB lagring",
+                "en": "+10 GB storage"
+            },
+            "desc": {
+                "uk": "Додатковий диск для файлів і баз",
+                "no": "Ekstra diskplass for filer og databaser",
+                "en": "Extra disk space for files and databases"
+            },
+            "icon": "📂",
+            "price_m1": 100,
+            "price_m3": 123,
+            "price_m12": 492,
+            "active": true,
+            "sort": 2,
+            "created_at": "2026-07-25 00:00:00",
+            "updated_at": "2026-07-26 16:15:50",
+            "billing_mode": "month"
+        },
+        {
+            "id": "svc_wildcard_ssl",
+            "name": {
+                "uk": "Wildcard SSL",
+                "no": "Wildcard SSL",
+                "en": "Wildcard SSL"
+            },
+            "desc": {
+                "uk": "SSL для всіх піддоменів",
+                "no": "SSL for alle underdomener",
+                "en": "SSL for all subdomains"
+            },
+            "icon": "🔒",
+            "price_m1": 140,
+            "price_m3": 420,
+            "price_m12": 140,
+            "active": true,
+            "sort": 3,
+            "created_at": "2026-07-25 00:00:00",
+            "updated_at": "2026-07-25 21:28:37",
+            "billing_mode": "year"
+        },
+        {
+            "id": "svc_priority_support",
+            "name": {
+                "uk": "Пріоритетна підтримка",
+                "no": "Prioritert support",
+                "en": "Priority support"
+            },
+            "desc": {
+                "uk": "Відповідь протягом 2 годин",
+                "no": "Svar innen 2 timer",
+                "en": "Response within 2 hours"
+            },
+            "icon": "🎧",
+            "price_m1": 111,
+            "price_m3": 333,
+            "price_m12": 1332,
+            "active": true,
+            "sort": 4,
+            "created_at": "2026-07-25 00:00:00",
+            "updated_at": "2026-07-25 00:00:00",
+            "billing_mode": "month"
+        },
+        {
+            "id": "svc_site_maintenance",
+            "name": {
+                "uk": "Обслуговування сайту",
+                "no": "Nettstedvedlikehold",
+                "en": "Site maintenance"
+            },
+            "desc": {
+                "uk": "Річний догляд: оновлення CMS/PHP, моніторинг, пріоритетна підтримка.",
+                "no": "Årlig oppfølging: oppdatering av CMS/PHP, overvåking, prioritert support.",
+                "en": "Yearly care: CMS/PHP updates, monitoring, priority support."
+            },
+            "icon": "🛠️",
+            "price_m1": 116,
+            "price_m3": 348,
+            "price_m12": 1393,
+            "active": true,
+            "sort": 5,
+            "created_at": "2026-07-25 00:00:00",
+            "updated_at": "2026-07-25 00:00:00",
+            "billing_mode": "year"
+        },
+        {
+            "id": "svc_seo_specialist",
+            "name": {
+                "uk": "SEO-спеціаліст",
+                "no": "SEO-spesialist",
+                "en": "SEO specialist"
+            },
+            "desc": {
+                "uk": "Щомісячна SEO-оптимізація, технічний аудит і звіти по позиціях.",
+                "no": "Månedlig SEO-optimalisering, teknisk revisjon og posisjonsrapporter.",
+                "en": "Monthly SEO optimisation, technical audit and ranking reports."
+            },
+            "icon": "📈",
+            "price_m1": 928,
+            "price_m3": 2784,
+            "price_m12": 11136,
+            "active": true,
+            "sort": 6,
+            "created_at": "2026-07-25 00:00:00",
+            "updated_at": "2026-07-25 00:00:00",
+            "billing_mode": "month"
+        },
+        {
+            "id": "svc_api_ai",
+            "name": {
+                "uk": "API + AI",
+                "no": "API + AI",
+                "en": "API + AI"
+            },
+            "desc": {
+                "uk": "Доступ до API та AI-помічники",
+                "no": "Tilgang til API og AI-assistent",
+                "en": "Access to the API and AI assistant"
+            },
+            "icon": "🤖",
+            "price_m1": 69,
+            "price_m3": 199,
+            "price_m12": 499,
+            "active": true,
+            "sort": 7,
+            "created_at": "2026-07-25 00:00:00",
+            "updated_at": "2026-07-26 02:23:18",
+            "billing_mode": "flexible"
+        },
+        {
+            "name": {
+                "uk": "Хостинг тариф BUSSINES",
+                "no": "Hosting tariff BUSSINES",
+                "en": "Hosting tariff BUSSINES"
+            },
+            "desc": {
+                "uk": "12 місяців",
+                "no": "12 months",
+                "en": "12 months"
+            },
+            "icon": "🚀",
+            "billing_mode": "flexible",
+            "price_m1": 120,
+            "price_m3": 360,
+            "price_m12": 1200,
+            "active": true,
+            "sort": 0,
+            "updated_at": "2026-07-26 16:15:00",
+            "id": "svc_da260c464dd7842f",
+            "created_at": "2026-07-25 21:26:27"
+        },
+        {
+            "name": {
+                "uk": "Фільтрація замовлень",
+                "no": "Filtration order",
+                "en": "Filtration order"
+            },
+            "desc": {
+                "uk": "order filter",
+                "no": "order filter",
+                "en": "order filter"
+            },
+            "icon": "🖧",
+            "billing_mode": "flexible",
+            "price_m1": 600,
+            "price_m3": 1800,
+            "price_m12": 6000,
+            "active": true,
+            "sort": 0,
+            "updated_at": "2026-07-26 16:15:39",
+            "id": "svc_255cc314bdde4473",
+            "created_at": "2026-07-26 01:54:38"
+        },
+        {
+            "name": {
+                "uk": "Регистрация домена Domain .LT",
+                "no": "Domèneregistrering Domain .LT",
+                "en": "Domain registration Domain .LT"
+            },
+            "desc": {
+                "uk": "",
+                "no": "",
+                "en": ""
+            },
+            "icon": "🚩",
+            "billing_mode": "year",
+            "price_m1": 0,
+            "price_m3": 0,
+            "price_m12": 119,
+            "active": true,
+            "sort": 0,
+            "updated_at": "2026-07-27 16:17:40",
+            "id": "svc_7ec968e2cd9c8231",
+            "created_at": "2026-07-27 16:16:04"
+        },
+        {
+            "name": {
+                "uk": "Хостинг простий сайт 5гб +SEO +PageSpeed for PHP",
+                "no": "Enkel nettsidehosting – 5 GB",
+                "en": "Simple website hosting 5GB"
+            },
+            "desc": {
+                "uk": "",
+                "no": "",
+                "en": ""
+            },
+            "icon": "🚀",
+            "billing_mode": "flexible",
+            "price_m1": 59,
+            "price_m3": 159,
+            "price_m12": 599,
+            "active": true,
+            "sort": 0,
+            "updated_at": "2026-07-27 20:07:00",
+            "id": "svc_71e5f5ed07f7e7b0",
+            "created_at": "2026-07-27 17:26:34"
+        },
+        {
+            "name": {
+                "uk": "AI CHAT Consultant",
+                "no": "AI CHAT Consultant",
+                "en": "AI CHAT Consultant"
+            },
+            "desc": {
+                "uk": "",
+                "no": "",
+                "en": ""
+            },
+            "icon": "📞",
+            "billing_mode": "flexible",
+            "price_m1": 99,
+            "price_m3": 249,
+            "price_m12": 499,
+            "active": true,
+            "sort": 0,
+            "updated_at": "2026-07-28 20:26:20",
+            "id": "svc_5d1504d98784d769",
+            "created_at": "2026-07-28 20:26:20"
+        }
+    ],
+    "seq": 0
+}

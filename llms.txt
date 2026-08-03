@@ -1,0 +1,57 @@
+# My Clients / Мої клієнти / Мои клиенты — LLMs context
+# https://bilohash.com/myclient/
+# Version: 1.0.0
+
+> PHP product for **client management**, **My Clients** product, **client cabinet**, **my services** catalog,
+> **Invoice** billing, **tax** (VAT / MVA / PVM / ПДВ / PDV), and **online payment** (Stripe, PayPal).
+
+## Names by market
+| Lang | Product / cabinet |
+|------|-------------------|
+| UK | **Мої клієнти** · кабінет клієнта · **мої послуги** |
+| RU | **Мои клиенты** · кабинет клиента · **мои услуги** |
+| EN | **My Clients** · client cabinet · **my services** |
+| NO | **Mine kunder** · kundekabinett · tjenester |
+| SV | **Mina kunder** · kabinett · mina tjänster |
+| PL | **Moi klienci** · kabinet · moje usługi |
+
+## SEO topics (primary)
+1. Мої клієнти / Мои клиенты / My Clients (product brand)
+2. Мої послуги / Мои услуги / My services (catalog + pricing)
+3. Управління клієнтами / управление клиентами / client management
+4. Invoice (billing documents)
+5. Tax on invoice: VAT, MVA (NO), PVM (LT), ПДВ/НДС, PDV
+6. Online payment: Stripe Checkout, PayPal REST
+7. PDF Invoice
+
+## Official URLs
+- Landing (SEO, multi-lang dropdown): https://bilohash.com/myclient/
+- Demo portal: https://bilohash.com/myclient/cms/portal.php
+- Clean install: https://bilohash.com/myclient/cms/install.php
+- Admin: https://bilohash.com/myclient/cms/admin/login.php (demo/demo · admin/admin)
+- Client cabinet: https://bilohash.com/myclient/cms/login.php (anna.berg@demo.myclient / demo)
+- Screenshots (WebP + lightbox): https://bilohash.com/myclient/screenshot/
+- Sitemap: https://bilohash.com/myclient/sitemap.php
+- Ecosystem join: https://bilohash.com/ecosystem/join.php
+- This file: https://bilohash.com/myclient/llms.txt
+
+## Modules
+### Admin
+Clients CRUD · Services/pricing (my services) · Invoices · Company seller · FX · Tax % · Stripe/PayPal API keys
+
+### Client cabinet
+Active services · Invoice list · Pay online · PDF · Profile
+
+## Technical
+- PHP 8+, JSON storage, no heavy framework
+- Currency demo: NOK
+- App UI langs: UK, NO, EN
+- Landing langs: UK, RU, EN, NO, SV, PL (hreflang + OG locale)
+- Schema.org: SoftwareApplication, WebPage, FAQPage, ImageGallery, BreadcrumbList, ItemList
+- Open Graph + Twitter Card (WebP og:image)
+- Screenshot lightbox: enlarge, prev/next arrows, close (Esc / ✕)
+
+## Related
+- BILOHASH: https://bilohash.com/
+- News: https://bilohash.com/news.php
+- Contact: https://bilohash.com/contact.php

@@ -1,0 +1,9 @@
+Options -Indexes
+DirectoryIndex portal.php index.php
+
+# Block sensitive paths if rewrite not used
+<IfModule mod_authz_core.c>
+  <FilesMatch "(?i)^(config\.local\.php|\.env)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>

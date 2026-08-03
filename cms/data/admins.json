@@ -1,0 +1,21 @@
+{
+    "items": [
+        {
+            "id": "adm_demo001",
+            "username": "demo",
+            "name": "Demo Admin",
+            "email": "demo@myclient.demo",
+            "password_hash": "$2y$10$Z8K1lIGgtMm9DwJ/hH2W0.jojTC9DRHFmux.37wirfwfR65XVXmHi",
+            "created_at": "2026-07-29 12:00:00"
+        },
+        {
+            "id": "adm_admin001",
+            "username": "admin",
+            "name": "Administrator",
+            "email": "admin@myclient.demo",
+            "password_hash": "$2y$10$HDIi9RQLMYp5770lWO3OouIW.uJr4N5gJh4Yn6zExv.lN9U5uh4ru",
+            "created_at": "2026-07-29 12:00:00"
+        }
+    ],
+    "seq": 0
+}

@@ -1,0 +1,144 @@
+{
+    "items": [
+        {
+            "id": "inv_demo_001",
+            "number": "MK-2026-D001",
+            "client_id": "cl_demo_anna",
+            "service_id": "svc_site_maintenance",
+            "period": "m12",
+            "lines": [
+                { "desc": "Website maintenance — 12 months (demo)", "qty": 1, "unit": 1393, "total": 1393 }
+            ],
+            "currency": "NOK",
+            "subtotal": 1393,
+            "tax_percent": 14,
+            "tax_amount": 195.02,
+            "total": 1588.02,
+            "status": "paid",
+            "lang": "no",
+            "notes": "DEMO invoice",
+            "created_at": "2026-07-10 09:00:00",
+            "due_at": "2026-07-24",
+            "paid_at": "2026-07-12 11:20:00",
+            "payment_provider": "manual",
+            "payment_ref": "demo"
+        },
+        {
+            "id": "inv_demo_002",
+            "number": "MK-2026-D002",
+            "client_id": "cl_demo_olek",
+            "service_id": "svc_seo_specialist",
+            "period": "m3",
+            "lines": [
+                { "desc": "SEO specialist — 3 months (demo)", "qty": 1, "unit": 2784, "total": 2784 }
+            ],
+            "currency": "NOK",
+            "subtotal": 2784,
+            "tax_percent": 14,
+            "tax_amount": 389.76,
+            "total": 3173.76,
+            "status": "pending",
+            "lang": "uk",
+            "notes": "DEMO invoice — unpaid",
+            "created_at": "2026-07-15 10:00:00",
+            "due_at": "2026-08-01",
+            "paid_at": null,
+            "payment_provider": null,
+            "payment_ref": null
+        },
+        {
+            "id": "inv_demo_003",
+            "number": "MK-2026-D003",
+            "client_id": "cl_demo_maria",
+            "service_id": "svc_wildcard_ssl",
+            "period": "m12",
+            "lines": [
+                { "desc": "Wildcard SSL — 1 year (demo)", "qty": 1, "unit": 140, "total": 140 }
+            ],
+            "currency": "NOK",
+            "subtotal": 140,
+            "tax_percent": 14,
+            "tax_amount": 19.6,
+            "total": 159.6,
+            "status": "paid",
+            "lang": "en",
+            "notes": "DEMO invoice",
+            "created_at": "2026-07-18 08:30:00",
+            "due_at": "2026-08-01",
+            "paid_at": "2026-07-18 14:00:00",
+            "payment_provider": "manual",
+            "payment_ref": "demo"
+        },
+        {
+            "id": "inv_demo_004",
+            "number": "MK-2026-D004",
+            "client_id": "cl_demo_jonas",
+            "service_id": "svc_extra_storage_10gb",
+            "period": "m1",
+            "lines": [
+                { "desc": "+10 GB storage — 1 month (demo)", "qty": 1, "unit": 100, "total": 100 },
+                { "desc": "Priority support add-on (demo)", "qty": 1, "unit": 200, "total": 200 }
+            ],
+            "currency": "NOK",
+            "subtotal": 300,
+            "tax_percent": 14,
+            "tax_amount": 42,
+            "total": 342,
+            "status": "pending",
+            "lang": "no",
+            "notes": "DEMO multi-line invoice",
+            "created_at": "2026-07-20 16:00:00",
+            "due_at": "2026-08-05",
+            "paid_at": null,
+            "payment_provider": null,
+            "payment_ref": null
+        },
+        {
+            "id": "inv_demo_005",
+            "number": "MK-2026-D005",
+            "client_id": "cl_demo_eva",
+            "service_id": "svc_extra_sites_5",
+            "period": "m12",
+            "lines": [
+                { "desc": "+5 additional websites — yearly (demo)", "qty": 1, "unit": 99, "total": 99 }
+            ],
+            "currency": "NOK",
+            "subtotal": 99,
+            "tax_percent": 14,
+            "tax_amount": 13.86,
+            "total": 112.86,
+            "status": "cancelled",
+            "lang": "en",
+            "notes": "DEMO cancelled invoice",
+            "created_at": "2026-07-22 12:00:00",
+            "due_at": "2026-08-05",
+            "paid_at": null,
+            "payment_provider": null,
+            "payment_ref": null
+        },
+        {
+            "id": "inv_demo_006",
+            "number": "MK-2026-D006",
+            "client_id": "cl_demo_anna",
+            "service_id": null,
+            "period": null,
+            "lines": [
+                { "desc": "Domain renewal .demo — 1 year", "qty": 1, "unit": 180, "total": 180 }
+            ],
+            "currency": "NOK",
+            "subtotal": 180,
+            "tax_percent": 14,
+            "tax_amount": 25.2,
+            "total": 205.2,
+            "status": "pending",
+            "lang": "no",
+            "notes": "DEMO domain invoice",
+            "created_at": "2026-07-25 09:15:00",
+            "due_at": "2026-08-10",
+            "paid_at": null,
+            "payment_provider": null,
+            "payment_ref": null
+        }
+    ],
+    "seq": 0
+}

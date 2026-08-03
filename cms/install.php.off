@@ -1,0 +1,316 @@
+<?php
+/**
+ * My Clients — clean installation wizard.
+ * Creates empty data stores + config.local.php, then redirects to admin setup.
+ *
+ * URL: /myclient/cms/install.php
+ */
+declare(strict_types=1);
+
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
+
+$root = __DIR__;
+$dataDir = $root . '/data';
+$lockFile = $dataDir . '/installed.lock';
+
+function mk_install_h(?string $s): string
+{
+    return htmlspecialchars($s ?? '', ENT_QUOTES, 'UTF-8');
+}
+
+function mk_install_detect_base(): string
+{
+    $script = str_replace('\\', '/', (string) ($_SERVER['SCRIPT_NAME'] ?? ''));
+    $dir = rtrim(str_replace('\\', '/', dirname($script)), '/');
+    if (str_ends_with($dir, '/admin')) {
+        $dir = substr($dir, 0, -6);
+    }
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host = (string) ($_SERVER['HTTP_HOST'] ?? 'localhost');
+
+    return $scheme . '://' . $host . ($dir === '' || $dir === '/' ? '' : $dir);
+}
+
+function mk_install_write_json(string $path, array $data): bool
+{
+    $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    if ($json === false) {
+        return false;
+    }
+    $tmp = $path . '.tmp';
+    if (file_put_contents($tmp, $json . "\n", LOCK_EX) === false) {
+        return false;
+    }
+
+    return rename($tmp, $path);
+}
+
+/** Default service catalog for a fresh install (no clients / invoices). */
+function mk_install_default_services(): array
+{
+    $now = date('Y-m-d H:i:s');
+
+    return [
+        'items' => [
+            [
+                'id' => 'svc_site_maintenance',
+                'name' => ['uk' => 'Обслуговування сайту', 'no' => 'Nettstedvedlikehold', 'en' => 'Site maintenance'],
+                'desc' => [
+                    'uk' => 'Річний догляд: оновлення, моніторинг, підтримка.',
+                    'no' => 'Årlig oppfølging: oppdatering, overvåking, support.',
+                    'en' => 'Yearly care: updates, monitoring, support.',
+                ],
+                'icon' => '🛠️',
+                'price_m1' => 116,
+                'price_m3' => 348,
+                'price_m12' => 1393,
+                'active' => true,
+                'sort' => 1,
+                'billing_mode' => 'year',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 'svc_seo_specialist',
+                'name' => ['uk' => 'SEO-спеціаліст', 'no' => 'SEO-spesialist', 'en' => 'SEO specialist'],
+                'desc' => [
+                    'uk' => 'Щомісячна SEO-оптимізація та звіти.',
+                    'no' => 'Månedlig SEO-optimalisering og rapporter.',
+                    'en' => 'Monthly SEO optimisation and reports.',
+                ],
+                'icon' => '📈',
+                'price_m1' => 928,
+                'price_m3' => 2784,
+                'price_m12' => 11136,
+                'active' => true,
+                'sort' => 2,
+                'billing_mode' => 'month',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 'svc_extra_sites_5',
+                'name' => ['uk' => '+5 додаткових сайтів', 'no' => '+5 ekstra nettsteder', 'en' => '+5 additional websites'],
+                'desc' => [
+                    'uk' => 'Розширте ліміт сайтів на 5',
+                    'no' => 'Utvid nettstedgrensen med 5',
+                    'en' => 'Expand your site limit by 5',
+                ],
+                'icon' => '🌐',
+                'price_m1' => 69,
+                'price_m3' => 0,
+                'price_m12' => 99,
+                'active' => true,
+                'sort' => 3,
+                'billing_mode' => 'year',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 'svc_priority_support',
+                'name' => ['uk' => 'Пріоритетна підтримка', 'no' => 'Prioritert support', 'en' => 'Priority support'],
+                'desc' => [
+                    'uk' => 'Відповідь протягом 2 годин',
+                    'no' => 'Svar innen 2 timer',
+                    'en' => 'Response within 2 hours',
+                ],
+                'icon' => '🎧',
+                'price_m1' => 111,
+                'price_m3' => 333,
+                'price_m12' => 1332,
+                'active' => true,
+                'sort' => 4,
+                'billing_mode' => 'month',
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+        ],
+        'seq' => 0,
+    ];
+}
+
+function mk_install_default_settings(): array
+{
+    return [
+        'items' => [[
+            'company_name' => 'My Company',
+            'company_address' => '',
+            'company_org_number' => '',
+            'company_email' => '',
+            'company_phone' => '',
+            'company_bank' => '',
+            'fx_rate_uah' => '',
+            'fx_rate_usd' => '',
+            'tax_enabled' => '0',
+            'tax_percent' => '25',
+            'stripe_secret_key' => '',
+            'stripe_publishable_key' => '',
+            'stripe_webhook_secret' => '',
+            'paypal_client_id' => '',
+            'paypal_client_secret' => '',
+            'paypal_env' => 'sandbox',
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]],
+        'seq' => 0,
+    ];
+}
+
+$errors = [];
+$ok = false;
+$baseUrl = mk_install_detect_base();
+$already = is_file($lockFile);
+
+// If lock exists but no admins yet, still allow re-run of data seed only via setup path
+$adminsPath = $dataDir . '/admins.json';
+$hasAdmins = false;
+if (is_file($adminsPath)) {
+    $a = json_decode((string) file_get_contents($adminsPath), true);
+    $hasAdmins = is_array($a) && !empty($a['items']);
+}
+
+if ($already && $hasAdmins && empty($_GET['force'])) {
+    header('Location: ' . $baseUrl . '/admin/login.php');
+    exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $company = trim((string) ($_POST['company_name'] ?? 'My Company'));
+    $baseInput = rtrim(trim((string) ($_POST['base_url'] ?? $baseUrl)), '/');
+    $force = !empty($_POST['force']);
+
+    if ($already && $hasAdmins && !$force) {
+        $errors[] = 'Already installed. Remove data/installed.lock to reinstall, or use force reinstall.';
+    } else {
+        if (!is_dir($dataDir) && !mkdir($dataDir, 0755, true) && !is_dir($dataDir)) {
+            $errors[] = 'Cannot create data/ directory. Check permissions.';
+        }
+        if (!is_writable($dataDir) && is_dir($dataDir)) {
+            $errors[] = 'data/ is not writable.';
+        }
+
+        if ($errors === []) {
+            $empty = ['items' => [], 'seq' => 0];
+            $settings = mk_install_default_settings();
+            $settings['items'][0]['company_name'] = $company !== '' ? $company : 'My Company';
+
+            $writes = [
+                'admins.json' => $empty,
+                'clients.json' => $empty,
+                'invoices.json' => $empty,
+                'settings.json' => $settings,
+                'services.json' => mk_install_default_services(),
+            ];
+            foreach ($writes as $file => $payload) {
+                if (!mk_install_write_json($dataDir . '/' . $file, $payload)) {
+                    $errors[] = 'Failed to write ' . $file;
+                }
+            }
+
+            // Protect data directory
+            $ht = $dataDir . '/.htaccess';
+            if (!is_file($ht)) {
+                @file_put_contents($ht, "Require all denied\n");
+            }
+
+            $local = <<<PHP
+<?php
+declare(strict_types=1);
+
+/**
+ * Local overrides — do not commit secrets.
+ * Payment API keys: Admin → Settings (recommended).
+ */
+define('MK_BASE_URL', '{$baseInput}');
+define('MK_DEMO_MODE', false);
+
+define('MK_STRIPE_SECRET_KEY', '');
+define('MK_STRIPE_PUBLISHABLE_KEY', '');
+define('MK_STRIPE_WEBHOOK_SECRET', '');
+define('MK_PAYPAL_CLIENT_ID', '');
+define('MK_PAYPAL_CLIENT_SECRET', '');
+define('MK_PAYPAL_ENV', 'sandbox');
+
+define('MK_MAIL_FROM', 'no-reply@example.com');
+define('MK_MAIL_FROM_NAME', 'My Clients');
+
+PHP;
+            if (file_put_contents($dataDir . '/config.local.php', $local) === false) {
+                $errors[] = 'Failed to write config.local.php';
+            }
+
+            $lockBody = "installed_at=" . gmdate('c') . "\nversion=1.0.0\nbase={$baseInput}\n";
+            if (file_put_contents($lockFile, $lockBody) === false) {
+                $errors[] = 'Failed to write installed.lock';
+            }
+
+            if ($errors === []) {
+                header('Location: ' . $baseInput . '/admin/setup.php');
+                exit;
+            }
+        }
+    }
+}
+?><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Install My Clients CMS</title>
+<style>
+  body{font-family:system-ui,Segoe UI,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .card{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:28px;max-width:440px;width:100%;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+  h1{margin:0 0 8px;font-size:1.35rem}
+  p{color:#94a3b8;font-size:.92rem;line-height:1.5;margin:0 0 18px}
+  label{display:block;font-size:.85rem;font-weight:600;margin:0 0 6px;color:#cbd5e1}
+  input[type=text],input[type=url]{width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;border:1px solid #475569;background:#0f172a;color:#f1f5f9;margin-bottom:14px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:12px;border:0;border-radius:10px;background:#0d9488;color:#fff;font-weight:700;cursor:pointer;font-size:1rem}
+  .btn:hover{background:#0f766e}
+  .err{background:#450a0a;border:1px solid #991b1b;color:#fecaca;padding:10px 12px;border-radius:10px;margin-bottom:14px;font-size:.88rem}
+  .ok{background:#052e16;border:1px solid #166534;color:#bbf7d0;padding:10px 12px;border-radius:10px;margin-bottom:14px;font-size:.88rem}
+  .check{display:flex;gap:8px;align-items:flex-start;font-size:.85rem;color:#94a3b8;margin:12px 0 16px}
+  .check input{margin-top:3px}
+  code{background:#0f172a;padding:1px 6px;border-radius:4px;font-size:.8rem}
+  .meta{font-size:.8rem;color:#64748b;margin-top:16px}
+  a{color:#5eead4}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Install My Clients CMS</h1>
+  <p>Clean install: empty clients &amp; invoices, default services catalog, company settings. Then create the first admin account.</p>
+
+  <?php if ($errors !== []): ?>
+  <div class="err"><?php foreach ($errors as $e): ?><div><?= mk_install_h($e) ?></div><?php endforeach; ?></div>
+  <?php endif; ?>
+
+  <?php if ($already && $hasAdmins): ?>
+  <div class="ok">Already installed. <a href="<?= mk_install_h($baseUrl) ?>/admin/login.php">Open admin login</a></div>
+  <?php endif; ?>
+
+  <form method="post">
+    <label for="company_name">Company name</label>
+    <input id="company_name" type="text" name="company_name" value="My Company" required>
+
+    <label for="base_url">Base URL (no trailing slash)</label>
+    <input id="base_url" type="url" name="base_url" value="<?= mk_install_h($baseUrl) ?>" required>
+
+    <?php if ($already): ?>
+    <label class="check">
+      <input type="checkbox" name="force" value="1">
+      <span>Force reinstall — overwrite <code>data/*.json</code> and reset admins/clients/invoices</span>
+    </label>
+    <?php endif; ?>
+
+    <button type="submit" class="btn">Install clean script</button>
+  </form>
+
+  <p class="meta">
+    After install → <code>admin/setup.php</code> (create admin).<br>
+    Stripe / PayPal keys → Admin → Settings.<br>
+    Product page: <a href="https://bilohash.com/myclient/">bilohash.com/myclient/</a>
+  </p>
+</div>
+</body>
+</html>

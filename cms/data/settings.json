@@ -1,0 +1,24 @@
+{
+    "items": [
+        {
+            "company_name": "My Clients Demo AS",
+            "company_address": "Karl Johans gate 1, 0154 Oslo (demo)",
+            "company_org_number": "DEMO",
+            "company_email": "demo@bilohash.com",
+            "company_phone": "+47 21 00 00 00",
+            "company_bank": "NO00 0000 0000 000 (demo)",
+            "fx_rate_uah": "3.8",
+            "fx_rate_usd": "0.095",
+            "tax_enabled": "1",
+            "tax_percent": "14",
+            "stripe_secret_key": "",
+            "stripe_publishable_key": "",
+            "stripe_webhook_secret": "",
+            "paypal_client_id": "",
+            "paypal_client_secret": "",
+            "paypal_env": "sandbox",
+            "updated_at": "2026-07-29 12:00:00"
+        }
+    ],
+    "seq": 0
+}

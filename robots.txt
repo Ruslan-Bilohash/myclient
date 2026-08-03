@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /screenshot/
+Disallow: /cms/data/
+Disallow: /cms/includes/
+Disallow: /cms/admin/setup.php
+
+Sitemap: https://bilohash.com/myclient/sitemap.php
